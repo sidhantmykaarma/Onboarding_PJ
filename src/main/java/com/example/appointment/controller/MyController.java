@@ -2,6 +2,7 @@ package com.example.appointment.controller;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +36,7 @@ public class MyController {
 	
 	
 	@GetMapping("/appointments/{ap_id}")
-	public Appointment getAP(@PathVariable String ap_id) {
+	public Optional<Appointment> getAP(@PathVariable String ap_id) {
 		return ap_service.getAP(Long.parseLong(ap_id));
 		
 	}
@@ -50,7 +51,7 @@ public class MyController {
 		return ap_service.updateAP(ap);
 	}
 	
-	@DeleteMapping("/appointments")
+	@DeleteMapping("/appointments/{id}")
 	public ResponseEntity<HttpStatus> deleteCourse(@PathVariable String id) {
 		try {
 			ap_service.deleteAP(Long.parseLong(id));

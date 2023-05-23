@@ -1,7 +1,8 @@
 package com.example.appointment.services;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,11 @@ public class Ap_serviceimpl implements AP_Service{
 
 	@Override
 	public List<Appointment> getAPs() {
-		return APDao.findAll();
+		return (List<Appointment>) APDao.findAll();
 	}
 	
-	public Appointment getAP(long id) {
-		return APDao.getOne(id);
+	public Optional<Appointment> getAP(long id) {
+		return APDao.findById(id);
 	}
 	
 	public Appointment addAP(Appointment ap) {
@@ -43,11 +44,10 @@ public class Ap_serviceimpl implements AP_Service{
 		APDao.save(ap);
 		return ap;
 	}
-	
+
+	@Override
 	public void deleteAP(long id) {
-//		list=this.list.stream().filter(e->e.getId()!=id).collect(Collectors.toList());
-		Appointment ap = APDao.getOne(id);
-		APDao.delete(ap);
+		APDao.deleteById(id);
 	}
 
 }

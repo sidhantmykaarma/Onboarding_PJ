@@ -1,9 +1,12 @@
 package com.example.appointment.dao;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import com.example.appointment.entity.Appointment;
 
-public interface AppointmentDao extends JpaRepository<Appointment, Long>{
+@Repository
+public interface AppointmentDao extends CrudRepository<Appointment, Long>{
 
 }
